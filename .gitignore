@@ -72,13 +72,15 @@ features/
 cache/
 *.cache
 
-# Results & Logs
-results/
+# Results & Logs (but keep critical JSON summaries)
 logs/
-reports/
 wandb/
 mlruns/
 *.log
+
+# Allow small critical result files
+!**/results/*.json
+!**/data/label_info.json
 
 # Temporary files
 tmp/

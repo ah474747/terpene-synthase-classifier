@@ -1,0 +1,60 @@
+{
+  "configuration": {
+    "model": "Simple MLP (512 hidden)",
+    "embeddings": "ESM2 (esm2_t33_650M_UR50D)",
+    "n_folds": 5,
+    "epochs": 30,
+    "batch_size": 16,
+    "learning_rate": 0.0001,
+    "n_classes": 30
+  },
+  "cross_validation_results": {
+    "macro_f1_mean": 0.0065993265993266,
+    "macro_f1_std": 0.006671766236498767,
+    "micro_f1_mean": 0.00974883855981417,
+    "precision_mean": 0.02,
+    "recall_mean": 0.004166666666666667,
+    "fold_results": [
+      {
+        "fold": 1,
+        "macro_f1": 0.01818181818181818,
+        "micro_f1": 0.02857142857142857,
+        "precision": 0.03333333333333333,
+        "recall": 0.0125,
+        "best_f1": 0.01818181818181818
+      },
+      {
+        "fold": 2,
+        "macro_f1": 0.007407407407407407,
+        "micro_f1": 0.010416666666666666,
+        "precision": 0.03333333333333333,
+        "recall": 0.004166666666666667,
+        "best_f1": 0.007407407407407407
+      },
+      {
+        "fold": 3,
+        "macro_f1": 0.0,
+        "micro_f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "best_f1": 0.0
+      },
+      {
+        "fold": 4,
+        "macro_f1": 0.007407407407407407,
+        "micro_f1": 0.00975609756097561,
+        "precision": 0.03333333333333333,
+        "recall": 0.004166666666666667,
+        "best_f1": 0.007407407407407407
+      },
+      {
+        "fold": 5,
+        "macro_f1": 0.0,
+        "micro_f1": 0.0,
+        "precision": 0.0,
+        "recall": 0.0,
+        "best_f1": 0.0
+      }
+    ]
+  }
+}
