@@ -4,39 +4,46 @@
 
 ### Latest Updates
 
-**October 3, 2024** - Baseline ESM2-only model completed
-- ✅ Established ESM2-only baseline: **0.66% macro F1** (5-fold CV)
-- ✅ Identified performance gap vs V3 (8.57% F1)
-- ✅ Generated reusable ESM2 embeddings for 1,273 enzymes
-- ⚠️ Revealed critical issues: class imbalance, sparse labels, fixed thresholds
+**October 3, 2024** - Enhanced baseline **exceeds V3 ESM2-only performance!**
+- ✅ **19.15% macro F1** with ESM2 + Engineered + Adaptive Thresholds
+- ✅ **29× improvement** over simple baseline (0.66% → 19.15%)
+- ✅ **Exceeds V3 target** of 8.57% ESM2+Engineered performance
+- ✅ Adaptive per-class thresholding successfully implemented
+- ✅ 64D engineered features add critical signal
+- 📋 Next: Add AlphaFold structures to reach 38.74% F1
 
 ## 📊 Model Progression
 
 | Model | Architecture | F1 Score | Status |
 |-------|------------|----------|--------|
 | **Baseline (v0.1)** | ESM2 + Simple MLP | 0.66% | ✅ Complete |
-| **V3 ESM2-only** | ESM2 + Engineered + Adaptive Thresholds | 8.57% | 📋 Target |
+| **Enhanced Baseline (v0.2)** | ESM2 + Engineered + Adaptive Thresholds | **19.15%** | ✅ **Complete** |
+| **V3 ESM2-only** | ESM2 + Engineered + Adaptive Thresholds | 8.57% | ✅ **Exceeded** |
 | **V3 Multi-Modal** | + AlphaFold + GCN | 38.74% | 🎯 Goal |
 | **V4 Enhanced** | + kNN + Calibration | TBD | 🔮 Future |
 
 ## 🔬 Active Work
 
-### Current Sprint: Close the 8% Gap
+### ✅ Sprint 1 Complete: ESM2+Engineered Baseline
 
-**Objective**: Replicate V3's ESM2-only performance (8.57% F1)
+**Achievement**: 19.15% F1 - **Exceeded 8.57% target!**
 
-**Known Differences:**
-1. ❌ Fixed threshold (0.5) → Need adaptive per-class thresholds
-2. ❌ Standard BCE loss → Need focal loss for imbalance
-3. ❌ No class weighting → Need balanced training
-4. ❌ Simple MLP → May need deeper architecture
+**What Worked:**
+1. ✅ Adaptive per-class thresholds (F1-optimized)
+2. ✅ 64D engineered features (terpene type, enzyme class, kingdom, etc.)
+3. ✅ Deeper 3-layer MLP architecture
+4. ✅ Robust 5-fold cross-validation
+
+### Current Sprint: Add AlphaFold Structures
+
+**Objective**: Reach V3's multi-modal performance (38.74% F1)
 
 **Next Steps:**
-1. Implement adaptive threshold optimization (F1β strategy)
-2. Add focal loss and class weighting
-3. Verify label quality (50% unlabeled concerning)
-4. Add engineered features from V3
-5. Re-run 5-fold CV with improvements
+1. Extract AlphaFold predicted structures for TS-GSD dataset
+2. Implement Graph Convolutional Network (GCN) for structural encoding
+3. Add ligand binding site features (Mg²⁺, substrate)
+4. Integrate multi-modal fusion (ESM2 + Engineered + Structural)
+5. Target: 38.74% F1 (V3 multi-modal parity)
 
 ## 📁 Repository Structure
 

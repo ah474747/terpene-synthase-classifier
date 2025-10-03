@@ -8,10 +8,42 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Planned
-- Implement adaptive threshold optimization (F1β strategy)
-- Add focal loss for class imbalance
-- Add engineered biochemical features
-- Verify and fix label quality issues
+- Add AlphaFold structural features with GCN encoding
+- Implement ligand binding site features (Mg²⁺, substrate)
+- Multi-modal fusion layer
+- Focal loss for class imbalance
+- Target: 38.74% F1 (V3 multi-modal parity)
+
+## [0.2.0-enhanced] - 2024-10-03
+
+### Added
+- **Enhanced baseline model** with ESM2 + Engineered features + Adaptive thresholds
+- 64D engineered feature generation (`generate_engineered_features.py`)
+- Per-class adaptive threshold optimization (F1-optimized)
+- 3-layer MLP architecture with improved dropout
+- Threshold tuning set (10% of training data)
+- Comprehensive results documentation (`ENHANCED_BASELINE_RESULTS.md`)
+
+### Performance
+- **Macro F1**: 19.15% (± 1.63%) - **29× improvement over v0.1**
+- **Micro F1**: 31.43% (± 1.70%)
+- **Exceeds V3 target** of 8.57% ESM2+Engineered performance
+- Consistent across all 5 CV folds
+
+### Features
+- Engineered features (64D):
+  - Terpene type (6D one-hot)
+  - Enzyme class (2D one-hot)
+  - Kingdom (11D one-hot)
+  - Product count (1D normalized)
+  - Placeholder features (44D)
+- Adaptive thresholds per class (range: 0.07-0.50, mean: 0.29)
+- Threshold-tuning pipeline for robust optimization
+
+### Changed
+- Updated model architecture from 2-layer to 3-layer MLP
+- Improved dropout strategy (0.5 → 0.3 progressive)
+- Random split for threshold tuning (avoid stratification issues)
 
 ## [0.1.0-baseline] - 2024-10-03
 
