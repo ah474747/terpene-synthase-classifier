@@ -1,0 +1,97 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual Environments
+venv/
+ENV/
+env/
+.venv
+
+# Jupyter Notebook
+.ipynb_checkpoints
+*.ipynb
+
+# IDEs
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+.DS_Store
+
+# Model Files & Checkpoints (large files)
+*.pth
+*.pt
+*.ckpt
+*.h5
+*.pkl
+*.pickle
+*.joblib
+
+# Data Files (often large or sensitive)
+*.fasta
+*.fa
+*.csv
+*.tsv
+*.json
+*.jsonl
+*.npy
+*.npz
+*.tar.gz
+*.zip
+
+# AlphaFold structures
+*.pdb
+*.cif
+structures/
+alphafold_outputs/
+
+# Embeddings & Feature Caches
+embeddings/
+features/
+cache/
+*.cache
+
+# Results & Logs
+results/
+logs/
+reports/
+wandb/
+mlruns/
+*.log
+
+# Temporary files
+tmp/
+temp/
+*.tmp
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Keep essential files (override above rules)
+!requirements.txt
+!README.md
+!**/README.md
+!.gitkeep
+
