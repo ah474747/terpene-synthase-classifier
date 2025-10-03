@@ -1,0 +1,53 @@
+{
+  "configuration": {
+    "model": "Multi-Modal (ESM2 + Engineered + GCN)",
+    "focal_loss": {
+      "alpha": 0.25,
+      "gamma": 2.0
+    },
+    "class_weighting": "inverse-frequency",
+    "n_folds": 5,
+    "epochs": 50
+  },
+  "cross_validation_results": {
+    "macro_f1_mean": 0.32867667640276393,
+    "macro_f1_std": 0.02806695425109564,
+    "fold_results": [
+      {
+        "fold": 1,
+        "macro_f1": 0.31244868020907857,
+        "micro_f1": 0.42369020501138954,
+        "precision": 0.3138936338936339,
+        "recall": 0.3808668646168646
+      },
+      {
+        "fold": 2,
+        "macro_f1": 0.3243799391248147,
+        "micro_f1": 0.4063745019920319,
+        "precision": 0.3190306901756346,
+        "recall": 0.41926509492685965
+      },
+      {
+        "fold": 3,
+        "macro_f1": 0.2880777357223506,
+        "micro_f1": 0.37254901960784315,
+        "precision": 0.26780718933782865,
+        "recall": 0.3706603581603582
+      },
+      {
+        "fold": 4,
+        "macro_f1": 0.36762403784142905,
+        "micro_f1": 0.4236453201970443,
+        "precision": 0.3318641288037506,
+        "recall": 0.5085647250353134
+      },
+      {
+        "fold": 5,
+        "macro_f1": 0.350852989116147,
+        "micro_f1": 0.45112781954887216,
+        "precision": 0.3956346594581889,
+        "recall": 0.40825295075295076
+      }
+    ]
+  }
+}

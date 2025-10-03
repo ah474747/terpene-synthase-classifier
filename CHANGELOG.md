@@ -8,11 +8,46 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Planned
-- Add AlphaFold structural features with GCN encoding
-- Implement ligand binding site features (Mg²⁺, substrate)
-- Multi-modal fusion layer
-- Focal loss for class imbalance
+- Fix graph loading for real AlphaFold structures
+- Add ligand/cofactor binding site features
+- Implement attention mechanisms in fusion layer
+- Ensemble predictions across folds
 - Target: 38.74% F1 (V3 multi-modal parity)
+
+## [0.3.0-multimodal] - 2024-10-03
+
+### Added
+- **Full multi-modal architecture** with three-branch fusion
+- Graph Convolutional Network (GCN) encoder for protein structures
+- Focal Loss implementation (α=0.25, γ=2.0)
+- Inverse-frequency class weighting for extreme imbalance
+- 50-epoch training with AdamW optimization
+
+### Performance
+- **Macro F1**: 32.87% (± 2.81%) - **72% improvement over v0.2**
+- **Micro F1**: 41.55% (± 3.97%)
+- 50× improvement over v0.1 baseline
+- 85% of V3's 38.74% target achieved
+
+### Architecture
+- Three parallel branches:
+  - PLM Encoder: ESM2 (1280D) → 256D
+  - Feature Encoder: Engineered (64D) → 256D
+  - GCN Encoder: Graphs (N×30D) → 256D
+- Fusion layer: 768D → 512D → 256D
+- Classifier: 256D → 30 classes
+
+### Features
+- Focal Loss for class imbalance (down-weights easy examples)
+- Inverse-frequency class weights (range: 0.07-5.62)
+- Xavier weight initialization
+- 3-layer GCN with global mean pooling
+- Adaptive per-class thresholds (mean: 0.37)
+
+### Known Issues
+- Using placeholder graphs due to unpickling issues
+- Real AlphaFold structures needed for full performance
+- Expected +5-8% F1 with real structural features
 
 ## [0.2.0-enhanced] - 2024-10-03
 
