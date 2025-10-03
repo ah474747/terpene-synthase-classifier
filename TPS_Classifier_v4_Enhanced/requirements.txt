@@ -1,0 +1,5 @@
+numpy
+torch
+scikit-learn
+biopython
+fair-esm

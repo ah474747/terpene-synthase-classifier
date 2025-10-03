@@ -4,14 +4,14 @@
 
 ### Latest Updates
 
-**October 3, 2024** - Multi-modal architecture achieves **32.87% F1!**
-- ✅ **32.87% macro F1** with full multi-modal architecture
-- ✅ **50× improvement** over simple baseline (0.66% → 32.87%)  
-- ✅ **72% improvement** over enhanced baseline (19.15% → 32.87%)
-- ✅ Focal Loss (α=0.25, γ=2.0) with inverse-frequency weighting
-- ✅ Three-branch fusion: ESM2 + Engineered + GCN structural
-- ⚠️ Using placeholder graphs (real AlphaFold needed for ~38% F1)
-- 📋 Next: Fix graph loading to reach V3's 38.74% F1
+**October 3, 2024** - Real AlphaFold graphs integrated: **32.94% F1**
+- ✅ **32.94% macro F1** with real AlphaFold protein graphs (1,222 structures)
+- ✅ **50× improvement** over simple baseline (0.66% → 32.94%)
+- ✅ Successfully fixed graph unpickling (ProteinGraph, EnhancedProteinGraph, FunctionalProteinGraph)
+- ✅ 96% graph coverage (1,222 graphs for 1,273 proteins)
+- ⚠️ Real graphs gave minimal benefit vs placeholders (+0.07% only!)
+- 🔍 **Key finding**: ESM2 likely already encodes structural information
+- 📋 Next: Enhance GCN architecture (attention, edge features) to close 5.8% gap to V3
 
 ## 📊 Model Progression
 
@@ -19,8 +19,9 @@
 |-------|------------|----------|--------|
 | **Baseline (v0.1)** | ESM2 + Simple MLP | 0.66% | ✅ Complete |
 | **Enhanced Baseline (v0.2)** | ESM2 + Engineered + Adaptive Thresholds | 19.15% | ✅ Complete |
-| **Multi-Modal (v0.3)** | ESM2 + Engineered + GCN + Focal Loss | **32.87%** | ✅ **Complete** |
-| **V3 Reference** | + Real AlphaFold Structures | 38.74% | 🎯 ~85% there |
+| **Multi-Modal (v0.3)** | ESM2 + Engineered + GCN (placeholder) | 32.87% | ✅ Complete |
+| **Multi-Modal Real (v0.3-real)** | + Real AlphaFold Graphs (1,222) | **32.94%** | ✅ **Complete** |
+| **V3 Reference** | + Advanced GCN + Tuning | 38.74% | 🎯 85% there |
 | **V4 Enhanced** | + kNN + Calibration | TBD | 🔮 Future |
 
 ## 🔬 Active Work

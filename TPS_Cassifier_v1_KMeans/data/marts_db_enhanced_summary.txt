@@ -1,0 +1,31 @@
+MARTS-DB Enhanced Dataset Summary
+========================================
+
+Total sequences: 1356
+Germacrene synthases: 80
+Other synthases: 1276
+
+Product Categories:
+  other: 988
+  sesquiterpenes: 120
+  monoterpenes: 94
+  germacrenes: 80
+  triterpenes: 45
+  diterpenes: 29
+
+Germacrene Types:
+  germacrene: 76
+  germacra: 4
+
+Enzyme Types:
+  sesq: 533
+  di: 249
+  mono: 202
+  pt: 131
+  tri: 128
+  sester: 46
+  sqs: 32
+  psy: 23
+  tetra: 6
+  hemi: 4
+  sesquar: 2

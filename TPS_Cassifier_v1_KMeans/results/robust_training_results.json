@@ -1,0 +1,14 @@
+{
+  "training_sequences": 200,
+  "embedding_dimension": 1280,
+  "positive_samples": 14,
+  "negative_samples": 186,
+  "class_balance": 0.07,
+  "cv_f1_mean": 0.5,
+  "cv_f1_std": 0.08164965809277258,
+  "cv_precision_mean": 0.5,
+  "cv_recall_mean": 0.5,
+  "cv_auc_pr_mean": 0.5409006734006735,
+  "best_fold": 1,
+  "best_f1_score": 0.6
+}

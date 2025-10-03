@@ -1,0 +1,17 @@
+{
+  "training_sequences": 1356,
+  "embedding_dimension": 1280,
+  "enhanced_feature_dimension": 1306,
+  "positive_samples": 80,
+  "negative_samples": 1276,
+  "class_balance": 0.058997050147492625,
+  "n_clusters": 13,
+  "embedding_type": "synthetic_based_on_sequence_properties",
+  "cv_f1_mean": 0.023529411764705882,
+  "cv_f1_std": 0.047058823529411764,
+  "cv_precision_mean": 0.2,
+  "cv_recall_mean": 0.0125,
+  "cv_auc_pr_mean": 0.20565324771609284,
+  "training_completed": true,
+  "timestamp": "2025-09-25T15:24:10.943662"
+}

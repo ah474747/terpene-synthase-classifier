@@ -1,0 +1,15 @@
+{
+  "model": "XGBoost with ESM2 embeddings",
+  "embedding_dim": 1280,
+  "n_sequences": 1373,
+  "n_positive": 97,
+  "n_negative": 1276,
+  "cv_metrics": {
+    "accuracy": "0.9359 \u00b1 0.0085",
+    "precision": "0.5796 \u00b1 0.1033",
+    "recall": "0.4375 \u00b1 0.1230",
+    "f1": "0.4838 \u00b1 0.0778",
+    "roc_auc": "0.9084 \u00b1 0.0258",
+    "avg_precision": "0.5416 \u00b1 0.0597"
+  }
+}

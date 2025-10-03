@@ -1,0 +1,7 @@
+diterpenes
+germacrenes
+monoterpenes
+other
+sesquiterpenes
+triterpenes
+

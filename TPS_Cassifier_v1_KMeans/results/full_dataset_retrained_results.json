@@ -1,0 +1,23 @@
+{
+  "training_sequences": 1356,
+  "embedding_dimension": 1280,
+  "positive_samples": 80,
+  "negative_samples": 1276,
+  "class_balance": 0.058997050147492625,
+  "cv_f1_mean": 0.5166833166833167,
+  "cv_f1_std": 0.10237620692145714,
+  "cv_precision_mean": 0.6633333333333333,
+  "cv_precision_std": 0.10666666666666667,
+  "cv_recall_mean": 0.4375,
+  "cv_recall_std": 0.11180339887498948,
+  "cv_auc_pr_mean": 0.6317043554325016,
+  "cv_auc_pr_std": 0.10426925187275506,
+  "best_fold": 1,
+  "best_f1_score": 0.6428571428571429,
+  "best_precision": 0.75,
+  "best_recall": 0.5625,
+  "best_auc_pr": 0.7640908230623242,
+  "failed_sequences": 0,
+  "training_completed": true,
+  "timestamp": "2025-09-26T15:35:16.045481"
+}

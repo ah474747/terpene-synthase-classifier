@@ -31,6 +31,62 @@ import pickle
 import sys
 from tqdm import tqdm
 
+# Import graph classes for unpickling
+# Add V3 path to allow importing the graph class definitions
+v3_path = Path(__file__).parent.parent / 'TPS_Classifier_v3_Early'
+if str(v3_path) not in sys.path:
+    sys.path.insert(0, str(v3_path))
+
+# Define the graph classes needed for unpickling
+# These match the V3 structure but are simplified for our needs
+class ProteinGraph:
+    """Base protein graph for unpickling"""
+    def __init__(self, uniprot_id, structure_data):
+        self.uniprot_id = uniprot_id
+        self.residues = structure_data.get('residues', [])
+        self.contacts = structure_data.get('contacts', [])
+        self.node_features = structure_data.get('node_features', torch.zeros((10, 20)))
+        self.edge_index = structure_data.get('edge_index', torch.tensor([[0], [1]], dtype=torch.long))
+        self.edge_features = structure_data.get('edge_features', torch.zeros((1, 4)))
+        
+        # Ensure tensors
+        if not isinstance(self.node_features, torch.Tensor):
+            self.node_features = torch.FloatTensor(self.node_features)
+        if not isinstance(self.edge_index, torch.Tensor):
+            self.edge_index = torch.LongTensor(self.edge_index)
+        if not isinstance(self.edge_features, torch.Tensor):
+            self.edge_features = torch.FloatTensor(self.edge_features)
+
+class EnhancedProteinGraph(ProteinGraph):
+    """Enhanced protein graph (25D features)"""
+    pass
+
+class FunctionalProteinGraph(EnhancedProteinGraph):
+    """Functional protein graph (30D features with ligands)"""
+    pass
+
+# Make classes available in the module namespace for pickle
+import __main__
+__main__.ProteinGraph = ProteinGraph
+__main__.EnhancedProteinGraph = EnhancedProteinGraph
+__main__.FunctionalProteinGraph = FunctionalProteinGraph
+
+# Also make them available in the expected module paths
+import types
+structural_graph_pipeline = types.ModuleType('structural_graph_pipeline')
+structural_graph_pipeline.ProteinGraph = ProteinGraph
+sys.modules['structural_graph_pipeline'] = structural_graph_pipeline
+
+module6_feature_enhancement = types.ModuleType('module6_feature_enhancement')
+module6_feature_enhancement.EnhancedProteinGraph = EnhancedProteinGraph  
+sys.modules['module6_feature_enhancement'] = module6_feature_enhancement
+
+module8_functional_geometric_integration = types.ModuleType('module8_functional_geometric_integration')
+module8_functional_geometric_integration.FunctionalProteinGraph = FunctionalProteinGraph
+sys.modules['module8_functional_geometric_integration'] = module8_functional_geometric_integration
+
+print("✅ Defined graph classes for unpickling")
+
 # --- Configuration ---
 DATA_FILE = '../TPS_Classifier_v3_Early/TS-GSD_consolidated.csv'
 ESM2_EMBEDDINGS_FILE = 'data/esm2_embeddings.npy'
@@ -53,13 +109,8 @@ print(f"🔧 Device: {DEVICE}")
 print(f"📊 Configuration: {N_SPLITS}-fold CV, {EPOCHS} epochs, batch size {BATCH_SIZE}")
 
 
-# --- 1. Protein Graph Data Structure ---
-class ProteinGraph:
-    """Simple protein graph container"""
-    def __init__(self, node_features, edge_index, uniprot_id=None):
-        self.node_features = torch.FloatTensor(node_features) if not isinstance(node_features, torch.Tensor) else node_features
-        self.edge_index = torch.LongTensor(edge_index) if not isinstance(edge_index, torch.Tensor) else edge_index
-        self.uniprot_id = uniprot_id
+# --- 1. Graph classes are defined above for unpickling ---
+# (ProteinGraph, EnhancedProteinGraph, FunctionalProteinGraph)
 
 
 # --- 2. Focal Loss Implementation ---
@@ -272,9 +323,14 @@ class MultiModalDataset(Dataset):
         
         # If no graph, create dummy graph
         if graph is None:
-            node_features = torch.zeros((10, 30))  # Dummy graph
-            edge_index = torch.tensor([[0], [1]], dtype=torch.long)
-            graph = ProteinGraph(node_features, edge_index, uniprot_id)
+            structure_data = {
+                'residues': [],
+                'contacts': [],
+                'node_features': torch.zeros((10, 30)),  # Dummy graph
+                'edge_index': torch.tensor([[0], [1]], dtype=torch.long),
+                'edge_features': torch.zeros((1, 4))
+            }
+            graph = ProteinGraph(uniprot_id, structure_data)
         
         return graph, self.esm2_emb[idx], self.eng_features[idx], self.labels[idx]
 
@@ -444,19 +500,33 @@ def run_multimodal_training():
     esm2_emb = np.load(ESM2_EMBEDDINGS_FILE)
     eng_features = np.load(ENGINEERED_FEATURES_FILE)
     
-    # Load graphs
-    print("📊 Loading protein graphs...")
-    with open(FUNCTIONAL_GRAPHS_FILE, 'rb') as f:
-        # Load with custom unpickler to handle class definitions
-        import sys
-        sys.path.insert(0, str(Path(__file__).parent.parent / 'TPS_Classifier_v3_Early'))
-        try:
-            graphs_dict = pickle.load(f)
-            print(f"✅ Loaded {len(graphs_dict)} protein graphs")
-        except Exception as e:
-            print(f"⚠️  Warning loading graphs: {e}")
-            print("   Creating placeholder graphs...")
-            graphs_dict = {}
+    # Load real AlphaFold graphs
+    print("📊 Loading real AlphaFold protein graphs...")
+    graphs_dict = {}
+    try:
+        with open(FUNCTIONAL_GRAPHS_FILE, 'rb') as f:
+            real_graphs = pickle.load(f)
+            
+            # Convert to our simple ProteinGraph format if needed
+            for uniprot_id, graph in real_graphs.items():
+                if hasattr(graph, 'node_features') and hasattr(graph, 'edge_index'):
+                    # Already has the right attributes, keep it
+                    graphs_dict[uniprot_id] = graph
+                else:
+                    print(f"   Warning: Graph {uniprot_id} has unexpected format")
+            
+            print(f"✅ Loaded {len(graphs_dict)} real AlphaFold protein graphs!")
+            
+            # Show sample graph info
+            if len(graphs_dict) > 0:
+                sample_graph = list(graphs_dict.values())[0]
+                print(f"   Sample graph - Nodes: {sample_graph.node_features.shape[0]}, "
+                      f"Features: {sample_graph.node_features.shape[1]}D")
+    
+    except Exception as e:
+        print(f"⚠️  Error loading graphs: {e}")
+        print("   This will significantly impact performance!")
+        print("   Continuing with placeholder graphs...")
     
     # Extract labels
     labels = []

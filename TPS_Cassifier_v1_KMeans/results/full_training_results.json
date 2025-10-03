@@ -1,0 +1,20 @@
+{
+  "training_sequences": 500,
+  "embedding_dimension": 1280,
+  "positive_samples": 34,
+  "negative_samples": 466,
+  "class_balance": 0.068,
+  "cv_f1_mean": 0.5928205128205128,
+  "cv_f1_std": 0.17435444941338107,
+  "cv_precision_mean": 0.6866666666666668,
+  "cv_precision_std": 0.1309792180292567,
+  "cv_recall_mean": 0.5380952380952381,
+  "cv_recall_std": 0.20292643573964303,
+  "cv_auc_pr_mean": 0.7227209760038653,
+  "cv_auc_pr_std": 0.18684314170740787,
+  "best_fold": 1,
+  "best_f1_score": 0.8333333333333334,
+  "best_precision": 0.8333333333333334,
+  "best_recall": 0.8333333333333334,
+  "best_auc_pr": 0.864367816091954
+}

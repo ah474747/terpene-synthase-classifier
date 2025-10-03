@@ -8,11 +8,45 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Planned
-- Fix graph loading for real AlphaFold structures
-- Add ligand/cofactor binding site features
-- Implement attention mechanisms in fusion layer
-- Ensemble predictions across folds
+- Enhance GCN architecture with attention mechanisms
+- Incorporate edge features (distances, angles) in graph processing
+- Implement V3's AdaptiveWeightedFocalLoss
+- Hyperparameter tuning (learning rate, dropout, focal loss params)
+- Data augmentation (sequence/graph perturbations)
 - Target: 38.74% F1 (V3 multi-modal parity)
+
+## [0.3.1-real-graphs] - 2024-10-03
+
+### Added
+- **Real AlphaFold protein graphs** successfully integrated (1,222 structures, 96% coverage)
+- Fixed graph unpickling by defining ProteinGraph class hierarchy
+- Module namespace registration for pickle compatibility
+- Fallback handling for proteins without graphs
+
+### Performance
+- **Macro F1**: 32.94% (± 2.01%) - Stable performance with real graphs
+- **Micro F1**: 40.32%
+- Real graphs vs placeholders: +0.07% F1 (minimal difference)
+
+### Key Findings
+- **Surprising result**: Real AlphaFold graphs provided virtually identical performance to placeholder graphs
+- **Hypothesis**: ESM2 embeddings already encode sufficient structural information
+- **Implication**: Performance gap to V3 (5.8% F1) likely due to GCN architecture sophistication, not graph quality
+
+### Technical Details
+- Graph structure: Variable nodes (100-600), 30D features per node
+- Node features: 20D amino acid + 5D physicochemical + 5D ligand/cofactor
+- Edge construction: 8Å spatial contact threshold from AlphaFold predictions
+- Successfully loaded: 1,222/1,273 proteins (96% coverage)
+
+### Fixed
+- `Can't get attribute 'FunctionalProteinGraph'` unpickling error
+- Graph class hierarchy: ProteinGraph → EnhancedProteinGraph → FunctionalProteinGraph
+- Module registration for structural_graph_pipeline, module6_feature_enhancement, module8_functional_geometric_integration
+
+### Changed
+- Updated train_multimodal.py with proper graph class definitions
+- Improved fallback graph creation for missing structures
 
 ## [0.3.0-multimodal] - 2024-10-03
 
@@ -21,7 +55,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Graph Convolutional Network (GCN) encoder for protein structures
 - Focal Loss implementation (α=0.25, γ=2.0)
 - Inverse-frequency class weighting for extreme imbalance
-- 50-epoch training with AdamW optimization
+- 50-epoch training with Adam optimization
 
 ### Performance
 - **Macro F1**: 32.87% (± 2.81%) - **72% improvement over v0.2**
@@ -45,9 +79,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 - Adaptive per-class thresholds (mean: 0.37)
 
 ### Known Issues
-- Using placeholder graphs due to unpickling issues
-- Real AlphaFold structures needed for full performance
-- Expected +5-8% F1 with real structural features
+- Using placeholder graphs (real AlphaFold unpickling issue)
+- Expected improvement with real structures
 
 ## [0.2.0-enhanced] - 2024-10-03
 

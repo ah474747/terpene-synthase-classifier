@@ -1,0 +1,16 @@
+{
+  "training_sequences": 100,
+  "n_clusters": 10,
+  "embedding_dimension": 1280,
+  "enhanced_feature_dimension": 1302,
+  "positive_samples": 9,
+  "negative_samples": 91,
+  "class_balance": 0.09,
+  "cv_f1_mean": 0.5079365079365079,
+  "cv_f1_std": 0.16187363535215188,
+  "cv_precision_mean": 0.47222222222222215,
+  "cv_recall_mean": 0.5555555555555555,
+  "cv_auc_pr_mean": 0.6923280423280422,
+  "best_fold": 3,
+  "best_f1_score": 0.6666666666666666
+}

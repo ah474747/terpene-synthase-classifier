@@ -1,0 +1,17 @@
+{
+  "training_sequences": 1250,
+  "embedding_dimension": 1280,
+  "enhanced_feature_dimension": 1304,
+  "positive_samples": 74,
+  "negative_samples": 1176,
+  "class_balance": 0.0592,
+  "n_clusters": 12,
+  "embedding_type": "real_esm2_embeddings",
+  "cv_f1_mean": 0.0,
+  "cv_f1_std": 0.0,
+  "cv_precision_mean": 0.0,
+  "cv_recall_mean": 0.0,
+  "cv_auc_pr_mean": 0.09676842850512804,
+  "training_completed": true,
+  "timestamp": "2025-09-26T10:05:50.904817"
+}

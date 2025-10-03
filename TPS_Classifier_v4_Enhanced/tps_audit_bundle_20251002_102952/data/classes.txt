@@ -1,0 +1,15 @@
+Germacrene_A
+Germacrene_C
+Germacrene_D
+Linalool
+Limonene
+Myrcene
+Pinene
+Sabinene
+Terpinolene
+Beta_caryophyllene
+Alpha_humulene
+Beta_farnesene
+Sesquiterpene_general
+Monoterpene_general
+Terpene_synthase_general
