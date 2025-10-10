@@ -1,8 +1,16 @@
 # Project Status
 
-## 🎯 Current Phase: Baseline Establishment & V3 Replication
+## 🎯 Current Phase: Documentation & Analysis
 
 ### Latest Updates
+
+**October 10, 2025** - Comprehensive model iteration documentation completed
+- 📚 **MODEL_ITERATIONS_SUMMARY.md** created with complete analysis of all 11 model versions
+- 📊 Documented journey from v0.1 (0.66% F1) to V3 Phase 4 (40.59% F1)
+- 📈 **6,053% total improvement** over initial baseline
+- 🔍 Key insights documented: adaptive thresholds (29× improvement), multi-modal fusion (72% improvement)
+- 📁 Complete training data file references and methodology details
+- 🎯 Analysis of performance gaps and future enhancement paths
 
 **October 3, 2024** - Real AlphaFold graphs integrated: **32.94% F1**
 - ✅ **32.94% macro F1** with real AlphaFold protein graphs (1,222 structures)
@@ -51,11 +59,16 @@
 
 ```
 terpene-synthase-classifier/
-├── TPS_Baseline_ESM2_Only/      # v0.1 - Simple baseline
-├── TPS_Classifier_v3_Early/     # V3 - Proven 38.74% F1
-├── TPS_Classifier_v4_Enhanced/  # V4 - Development
-├── BASELINE_RESULTS.md          # Baseline analysis
+├── TPS_Baseline_ESM2_Only/      # v0.1-v0.3 - Baseline iterations
+├── TPS_Classifier_v3_Early/     # V3 - Proven 40.59% test F1
+├── TPS_Classifier_v4_Enhanced/  # V4 - Development (kNN + calibration)
+├── MODEL_ITERATIONS_SUMMARY.md  # 📚 Comprehensive documentation of all 11 model versions
+├── BASELINE_RESULTS.md          # v0.1 baseline analysis
+├── ENHANCED_BASELINE_RESULTS.md # v0.2 enhanced baseline
+├── MULTIMODAL_RESULTS.md        # v0.3 multi-modal results
+├── V3_SUMMARY_AND_STATUS.md     # V3 complete summary
 ├── PROJECT_STATUS.md            # This file
+├── CHANGELOG.md                 # Version history
 └── README.md                    # Main overview
 ```
 
@@ -93,8 +106,13 @@ terpene-synthase-classifier/
 
 ## 🔗 References
 
+- **Model Iterations Summary**: `MODEL_ITERATIONS_SUMMARY.md` - Complete documentation of all 11 model versions
 - **V3 Benchmark**: `VERIFY_V3_BENCHMARK.md`
 - **Baseline Results**: `BASELINE_RESULTS.md`
+- **Enhanced Baseline Results**: `ENHANCED_BASELINE_RESULTS.md`
+- **Multi-Modal Results**: `MULTIMODAL_RESULTS.md`
+- **V3 Summary**: `V3_SUMMARY_AND_STATUS.md`
+- **V3 GCN Analysis**: `V3_GCN_AND_ALPHAFOLD_ANALYSIS.md`
 - **Data Pipeline**: `TPS_Classifier_v3_Early/marts_consolidation_pipeline.py`
 
 ## 🏷️ Tags & Releases
@@ -104,7 +122,7 @@ terpene-synthase-classifier/
 
 ---
 
-**Last Updated**: October 3, 2024  
+**Last Updated**: October 10, 2025  
 **Branch**: `main`  
 **Repository**: https://github.com/ah474747/terpene-synthase-classifier
 
