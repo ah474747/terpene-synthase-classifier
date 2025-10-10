@@ -7,6 +7,14 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Added
+- **MODEL_ITERATIONS_SUMMARY.md**: Comprehensive documentation of all model iterations
+  - Detailed table of 11 model versions with training data, methodologies, and F1 scores
+  - Complete performance evolution from v0.1 (0.66% F1) to V3 Phase 4 (40.59% F1)
+  - Training data file locations and references
+  - Key insights: adaptive thresholds, multi-modal fusion, ESM2 structural encoding
+  - 6,053% total improvement over initial baseline
+
 ### Planned
 - Enhance GCN architecture with attention mechanisms
 - Incorporate edge features (distances, angles) in graph processing
